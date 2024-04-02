@@ -1,0 +1,83 @@
+<link rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200"/>
+<link rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200"/>
+<nav class="navbar navbar-expand-lg bg-body-secondary">
+  <div class="container-fluid">
+    <a class="navbar-brand ms-4 fs-2" href="#" (click)="navigateToHome()">E-Kart</a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class=" collapse navbar-collapse" id="navbarSupportedContent">
+d..
+
+      <ul class="navbar-nav ms-auto me-5 fs-6 mb-2 mb-lg-0">
+        <li class="nav-item">
+          <a class="nav-link active" aria-current="page" href="#" routerLink="/">Home</a>
+        </li>
+        <li class="nav-item dropdown">
+          <button mat-button (click)="addUserIfLoggedIn()" [matMenuTriggerFor]="menu"
+                  [disabled]="!isLoggedIn()"><span
+            class="material-symbols-outlined">
+person
+</span></button>
+          <mat-menu #menu="matMenu">
+            <span mat-menu-item>{{this.username}}</span>
+            <button mat-menu-item (click)="navigateToOrders()">Orders</button>
+            <button mat-menu-item (click)="logOut()">Log Out</button>
+          </mat-menu>
+        </li>
+
+        <li class="nav-item">
+          <!--                    <a class="btn btn-lg" data-bs-toggle="offcanvas" data-bs-target="#offcanvasRight" aria-controls="offcanvasRight" aria-current="page">-->
+          <a
+            class="btn btn-lg"
+            [routerLink]="isLoggedIn() ? null : '/login'"
+            [attr.data-bs-toggle]="isLoggedIn() ? 'offcanvas' : ''"
+            [attr.data-bs-target]="isLoggedIn() ? '#offcanvasRight' : ''"
+            [attr.aria-controls]="isLoggedIn() ? 'offcanvasRight' : ''"
+            [attr.aria-current]="isLoggedIn() ? 'page' : ''"
+          >
+            <span class="material-symbols-outlined">shopping_cart_checkout</span>
+          </a>
+        </li>
+
+<!--        <li class="nav-item">-->
+<!--          <a class="nav-link active" aria-current="page" href="#" *ngIf="checkRole('ADMIN')"-->
+<!--             routerLink="/admin">Admin-->
+<!--            DashBoard</a>-->
+<!--        </li>-->
+<!--        <li class="nav-item">-->
+<!--          <a class="nav-link active" aria-current="page" href="#" *ngIf="checkRole('USER') "-->
+<!--             routerLink="/user">User-->
+<!--            DashBoard</a>-->
+<!--        </li>-->
+      </ul>
+      <form class="d-flex" role="search">
+        <!--        <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">-->
+        <button class="btn btn-success me-3" routerLink="/login" *ngIf="! isLoggedIn()">Login</button>
+        <button class="btn btn-warning text-white" routerLink="/register" *ngIf="!isLoggedIn()">Register
+        </button>
+      </form>
+    </div>
+  </div>
+</nav>
+
+
+<mat-toolbar color="secondary ps-5" *ngIf="checkRole('ADMIN')">
+  <button mat-stroked-button style="border: 2px solid" color="primary" class="me-3" (click)="navigateToHome()">Home
+  </button>
+  <button mat-stroked-button style="border: 2px solid" color="primary" class="me-3" routerLink="/add-product">Add
+    Product
+  </button>
+  <button mat-stroked-button style="border: 2px solid" color="primary" class="me-3" routerLink="/all-product">All
+    Products
+  </button>
+</mat-toolbar>
+
+<!--&lt;!&ndash; Button trigger modal &ndash;&gt;-->
+<!--<button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#staticBackdrop">-->
+<!--  Launch static backdrop modal-->
+<!--</button>-->

@@ -1,0 +1,12 @@
+<div class="order-summary-container">
+    <h1 class="display-1 fw-bold">Order Summary</h1>
+    <section>
+        <mat-tab-group #tabGroup mat-stretch-tabs="false" mat-align-tabs="center">
+            <mat-tab label="Order Confirmation"><checkout-orderdetails [allOrders]="allorder" [user]="user" (next)="onNextClickToAddress($event)"></checkout-orderdetails></mat-tab>
+            <mat-tab label="Delivery Information"><checkout-addressdetails [addressList]="addressList" [states]="allStatesOfIndia" (nextEmitter)="onNextClickToPayment($event)"></checkout-addressdetails></mat-tab>
+            <mat-tab label="Payment"><checkout-paymentdetails [totalAmount]="totalAmount" (successEmit)="placeOrder()"></checkout-paymentdetails></mat-tab>
+        </mat-tab-group>
+
+    </section>
+
+</div>

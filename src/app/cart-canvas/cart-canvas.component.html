@@ -1,0 +1,47 @@
+<div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasRight" aria-labelledby="offcanvasRight">
+    <div class="offcanvas-header">
+        <h1 style="font-family: 'Anton', sans-serif;
+" class="text-center w-100 offcanvas-title" id="offcanvasRightLabel">Cart</h1>
+        <button class="btn-close" type="button" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+    </div>
+    <mat-divider></mat-divider>
+    <div class="offcanvas-body">
+        <div class="canvasProducts">
+            <div class=" card mb-3" *ngFor="let product of products">
+                <div class="card-header">
+                    <h3 class="fw-bold">{{product?.productName}}</h3>
+                </div>
+                <div class="card-body d-flex justify-content-between align-items-center">
+                    <div class="canvas-image-div">
+                        <span class="canvas-image w-100">
+                            <img [src]="product?.images[0].content" height="100px" width="100px"
+                                 alt="">
+                        </span>
+                    </div>
+                    <div class="canvas-quantity">
+                        <label class="input-group-text" for="inputGroupSelect03">Quantity</label>
+                        <select [(ngModel)]=productQuantity[product?.id] (change)="updateCost( product?.id)" class="form-select" id="inputGroupSelect03"
+                                aria-label="Example select with button addon">
+                            <option value=1 selected>1</option>
+                            <option value=2 >2</option>
+                            <option value=3 >3</option>
+                        </select>
+
+                        <div style="text-align: right" class="mt-3">
+
+                            <p class="fw-bold">
+                                {{ ((+product?.productCost - (+product?.productCost * +product?.productDiscount / 100)) * +productQuantity[product?.id]) | currency:'INR':'symbol':'1.2-2' }}
+                            </p>
+                            <button mat-stroked-button color="warn" (click)="removeProductFromCart(product?.id)">Remove</button>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+        <div class="checkout-button text-center">
+            <h3 class="fw-bold">Total - {{totalCost | currency:'INR':'symbol':'1.2-2'}}</h3>
+            <button (click)="checkOut()" class="btn btn-lg" mat-raised-button color="warn">Check Out</button>
+        </div>
+    </div>
+</div>

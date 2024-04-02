@@ -1,0 +1,47 @@
+<div class="container">
+  <div class="card mt-5">
+    <div class="card-header fs-4">
+<h1 class="text-center w-100 text-dark fs-1" style="font-weight: bold">REGISTER</h1>
+<p class="fs-5 text-success mb-3" >Fill all the details properly to activate the 'Register' button....</p>
+<form #loginForm="ngForm" (ngSubmit)="submitRegistrationForm(loginForm)">
+  <mat-form-field class="example-full-width w-100  ms-0" appearance="outline">
+    <mat-label color="primary">Enter your name</mat-label>
+    <input matInput #username maxlength="256" placeholder="Name" name="userRealName" ngModel>
+  </mat-form-field>
+  <mat-form-field class="example-full-width me-3" appearance="outline">
+    <mat-label>Enter your email</mat-label>
+    <input type="email" matInput #email maxlength="256" placeholder="Email" name="userEmail" ngModel>
+  </mat-form-field>
+  <mat-form-field class="example-full-width" appearance="outline">
+    <mat-label>Enter your contact</mat-label>
+    <input type="email" matInput #contact maxlength="10" placeholder="Contact" name="userContact" ngModel>
+  </mat-form-field>
+  <mat-form-field class="example-full-width me-3" appearance="outline">
+    <mat-label>Enter your password</mat-label>
+      <input [(ngModel)]="userPassword" name="userPassword" #password matInput [type]="hide ? 'password' : 'text'" placeholder="Password" ngModel>
+      <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide"><mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon></button>
+  </mat-form-field>
+    <mat-form-field class="example-full-width" appearance="outline">
+    <mat-label>Enter to confirm password</mat-label>
+      <input [(ngModel)]="userConfirmPassword" name="confirmPassword" matInput [type]="hide ? 'password' : 'text'" placeholder="Confirm Password">
+      <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide"><mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon></button>
+  </mat-form-field>
+  <mat-form-field class="example-full-width me-3" appearance="outline">
+    <mat-label>Enter recovery email (optional)</mat-label>
+    <input type="email" matInput #userRecoveryEmail maxlength="256" placeholder="Recovery Email" name="userRecoveryEmail" ngModel>
+  </mat-form-field>
+  <mat-form-field class="example-full-width" appearance="outline">
+    <mat-label>Select</mat-label>
+    <mat-select [(ngModel)]="roleName" name="role" [ngModelOptions]="{standalone:true}">
+      <mat-option value="USER">USER</mat-option>
+      <mat-option value="ADMIN">ADMIN</mat-option>
+    </mat-select>
+  </mat-form-field>
+
+  <div class="card-footer">
+    <button [disabled]="!matchPassword()" mat-raised-button color="primary w-100">Register</button>
+  </div>
+</form>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,15 @@
+<div class="container text-center">
+
+  <h1 class="display-01 fw-bolder">
+    Payment Page
+  </h1>
+
+  <p class="display-05 fw-bold">
+    Order Total : {{totalAmount | currency : 'INR':'symbol':'1.2-2'}}
+  </p>
+
+  <div class="btn-group d-flex flex-column gap-2">
+    <button [disabled]="!checkAmount()" (click)="initiatePayment()" class="btn btn-outline-success" type="submit">Pay Now</button>
+    <button class="btn btn-outline-danger" type="reset">Cancel Payment</button>
+  </div>
+</div>

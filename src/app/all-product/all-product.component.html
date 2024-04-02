@@ -1,0 +1,31 @@
+<div class="container mt-5">
+    <div class="card p-2 w-100">
+        <div>
+            <mat-paginator [length]="length" [pageSizeOptions]="[5, 10, 20]" aria-label="Select page" #page
+                           (page)="pageEvent($event)">
+            </mat-paginator>
+        </div>
+
+        <mat-divider/>
+
+        <mat-list role="list" *ngFor="let product of pageProductList">
+            <mat-list-item role="listitem" style="display: flex; align-items: center;">
+                <div style="display: flex; justify-content: space-between; align-items: center; width: 100%;">
+                    <p style="margin: 0;">{{product.productName}}</p>
+                    <div>
+                        <button (click)="showProductDetails(product.id)"  mat-icon-button color="primary" aria-label="Example icon button with a home icon">
+                            <mat-icon >image</mat-icon>
+                        </button>
+                        <button mat-icon-button color="primary" aria-label="Example icon button with a home icon">
+                            <mat-icon>edit</mat-icon>
+                        </button>
+                        <button (click)="deleteProduct(product.id)" mat-icon-button color="warn" aria-label="Example icon button with a home icon">
+                            <mat-icon>delete</mat-icon>
+                        </button>
+                    </div>
+                </div>
+            </mat-list-item>
+            <mat-divider/>
+        </mat-list>
+    </div>
+</div>

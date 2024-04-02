@@ -1,0 +1,30 @@
+<div class="container mt-3">
+    <div class="card" *ngFor="let orders of allOrders">
+        <div class="card-header text-center">
+            <h1 class="fw-bold">{{orders.productId.productName}}</h1>
+        </div>
+        <div class="card-body d-flex justify-content-sm-between">
+            <p>{{orders.productId.productDescription}}</p>
+            <div class="input-group mb-3 OrderDetailsComponentProductQuantity">
+                <label class="input-group-text" for="inputGroupSelect01">Quantity</label>
+                <select [(ngModel)]="productQuantity[orders.productId.id]" (change)="updateQuantity(orders.productId.id)" class="form-select" id="inputGroupSelect01">
+                    <option value=1 selected>1</option>
+                    <option value=2>2</option>
+                    <option value=3>3</option>
+                </select>
+            </div>
+            <div>
+                <h4 class="fw-bold">
+                    {{(orders.productId.productCost - orders.productId.productCost * orders.productId.productDiscount / 100) * productQuantity[orders.productId.id] | currency : 'INR' : 'symbol' : '1.2-2'}}
+                </h4>
+            </div>
+        </div>
+    </div>
+    <div>
+        <h2 class="mt-3 fw-bold text-center">Total Cost : {{totalCost | currency : 'INR' : 'symbol' : '1.2-2'}}</h2>
+    </div>
+    <div class="mt-3 float-end" >
+        <button (click)="onNextClick()" class="btn btn-primary float-end">Next</button>
+    </div>
+</div>
+

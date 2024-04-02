@@ -1,0 +1,23 @@
+.carousel-component{
+  width : 45%;
+}
+
+.product-details{
+  width:50%;
+}
+
+.discount-tag{
+  display:inline-block;
+  background-color : green;
+  padding : 0.2vw;
+  border-radius : 40%;
+}
+
+.product-details-button{
+  width: 30%;
+  height: 2vw;
+  font-size: 1.1vw;
+  font-weight: bold;
+  padding: 31px 0 31px 0;
+}
+

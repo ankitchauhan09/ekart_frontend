@@ -1,0 +1,40 @@
+<ul class="navbar-nav ms-auto me-auto mt-3 w-50 fs-6 mb-2 mb-lg-0">
+  <form class="d-flex" role="search" (submit)="searchKeyword()">
+    <input class="form-control me-2" [(ngModel)]="value" type="search" placeholder="Search" aria-label="Search"
+           [ngModelOptions]="{standalone: true}">
+    <button mat-raised-button color="primary" type="submit">Search</button>
+  </form>
+
+</ul>
+
+
+<div id="main">
+  <app-cart-canvas [userId]="getUserId()"></app-cart-canvas>
+
+  <div  *ngIf="productList.length > 0 ; else elseBlock" id="productCardSection" class="p-3">
+    <div>
+      <mat-paginator [length]="length" [pageSizeOptions]="[5, 10, 20]" aria-label="Select page" #page
+                     (page)="pageEvent($event)">
+      </mat-paginator>
+    </div>
+    <div>
+      <div *ngIf="searchBarContent === ''" class="allCards">
+        <div class="card" style="width: 18rem;" *ngFor="let product of productList; let i = index"
+             (click)="navigateToProductDetails(product.id)">
+          <img [src]="getProductImage(product.id)"
+               class="card-img-top" alt="..." height="60%">
+          <div class="card-body">
+            <h4 style="font-weight: bold" class="card-text">{{product.productName}}</h4>
+            <p>{{product.productDescription}}</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <ng-template #elseBlock>
+    <div class="container text-center w-100 h-100 border-black" >
+      No products with such name...
+    </div>
+  </ng-template>
+
+</div>

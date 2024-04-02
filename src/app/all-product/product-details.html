@@ -1,0 +1,10 @@
+
+<mat-grid-list cols="4" rowHeight="1:2" gutterSize="5px">
+    <mat-grid-tile *ngFor="let image of images;">
+        <img [src]="image" alt="" style="object-fit: contain; height: 100%; width: 100%">
+    </mat-grid-tile>
+</mat-grid-list>
+<!--<mat-dialog-actions align="end">-->
+<!--    <button mat-button mat-dialog-close>Cancel</button>-->
+<!--    <button mat-button [mat-dialog-close]="true" cdkFocusInitial>Install</button>-->
+<!--</mat-dialog-actions>-->

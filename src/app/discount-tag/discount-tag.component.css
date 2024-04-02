@@ -1,0 +1,20 @@
+.discount-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #f8d7da; /* Light red background color for illustration */
+  padding: 8px 12px;
+  border-radius: 4px;
+}
+
+.discount-label {
+  color: #721c24; /* Dark red text color for illustration */
+  font-weight: bold;
+  margin-right: 8px;
+}
+
+.discount-percent {
+  color: #721c24; /* Dark red text color for illustration */
+  font-size: 1.2em;
+  font-weight: bold;
+}

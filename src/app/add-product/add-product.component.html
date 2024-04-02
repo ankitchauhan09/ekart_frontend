@@ -1,0 +1,68 @@
+<div class="container mt-5">
+    <div class="card p-2">
+        <div class="row">
+            <div class="col-6">
+                <form #loginForm="ngForm" (ngSubmit)="addProduct(loginForm)">
+                    <mat-form-field class="w-100" appearance="outline">
+                        <mat-label>Product Name</mat-label>
+                        <input matInput name="productName" type="text" ngModel>
+                    </mat-form-field>
+                    <mat-form-field class="w-100" appearance="outline">
+                        <mat-label>Product Cost</mat-label>
+                        <input matInput name="productCost" type="number" ngModel>
+                    </mat-form-field>
+                    <mat-form-field class="w-100" appearance="outline">
+                        <mat-label>Product Discount</mat-label>
+                        <input matInput name="productDiscount" type="number" ngModel>
+                    </mat-form-field>
+                    <mat-form-field class="w-100" appearance="outline">
+                        <mat-label>Product Quantity</mat-label>
+                        <input matInput name="productQuantity" type="number" ngModel>
+                    </mat-form-field>
+                    <mat-form-field class="w-100" appearance="outline">
+                        <mat-select name="categoryId" required [(ngModel)]="categoryId"
+                                    [ngModelOptions]="{standalone:true}">
+                            <mat-option *ngFor="let category of categoryList" value="{{category.id}}">
+                                {{ category.categoryName }}
+                            </mat-option>
+                        </mat-select>
+                    </mat-form-field>
+                    <mat-form-field class="w-100" appearance="outline">
+                        <mat-label>Product Description</mat-label>
+                        <textarea matInput name="productDescription" ngModel></textarea>
+                    </mat-form-field>
+
+                    <button mat-stroked-button color="primary" type="reset" class="me-3">Reset</button>
+                    <button mat-stroked-button color="primary" type="submit">Add Product</button>
+                </form>
+            </div>
+            <div class="col-6">
+                <div class="container p-4" style="width: 100%; height: 100%">
+                    <div
+                            style=" min-height: 200px; border-radius: 10px; background-color: lightgrey;display:flex; justify-content: center; align-items: center"
+                            class="w-100">
+                        <p class="fs-5">Drag or click to <a style="cursor: pointer"
+                                                            (click)="fileInput.click()">Browse</a> product images</p>
+                        <input type="file" (change)="updateImageList($event)" name="" style="display: none" #fileInput
+                               id="" multiple>
+                    </div>
+
+                    <div class="mt-5">
+                        <div class="row">
+                            <mat-grid-list cols="4" rowHeight="1:1" gutterSize="5px">
+                                <mat-grid-tile *ngFor="let image of imageUrl; let i = index;" style="border: 1px solid lightgrey">
+                                    <div style="position: relative; background-color: #ffff">
+                                        <span class="image-remove-btn"><mat-icon (click)="removeImage(i)" color="warn">cancel</mat-icon></span>
+                                        <img [src]="image"   alt="" height="100px" width="100px">
+                                    </div>
+                                </mat-grid-tile>
+                            </mat-grid-list>
+                        </div>
+                    </div>
+
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

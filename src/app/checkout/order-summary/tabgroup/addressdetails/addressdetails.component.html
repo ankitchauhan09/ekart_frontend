@@ -1,0 +1,78 @@
+<div class="container mt-3">
+
+    <h1>Address Details</h1>
+    <div class="mt-3 text-center">
+        <mat-radio-group [(ngModel)]="existing" aria-label="Select an option">
+            <mat-radio-button value="0">New Address</mat-radio-button>
+            <mat-radio-button value="1">Existing Address</mat-radio-button>
+        </mat-radio-group>
+    </div>
+
+    <div *ngIf="existing === '0'">
+        <form (ngSubmit)="next()" class="row g-3 bg-light-subtle">
+            <div class="col-12">
+                <label for="inputAddress" class="form-label">Street</label>
+                <input name="street" type="text" class="form-control" id="inputAddress" placeholder=""
+                       [(ngModel)]="street" required #streetName="ngModel"
+                       [class.is-invalid]="streetName.invalid && streetName.touched">
+                <small class="text-danger" [class.d-none]="streetName.valid || streetName.untouched">Fill the
+                    field..</small>
+            </div>
+            <div class="col-12">
+                <label for="inputAddress2" class="form-label">Locality</label>
+                <input required name="locality" type="text" class="form-control" id="inputAddress2" placeholder=""
+                       [(ngModel)]="locality" #localityName="ngModel"
+                       [class.is-invalid]="localityName.invalid && localityName.touched">
+                <small class="text-danger" [class.d-none]="localityName.valid || localityName.untouched">Fill the
+                    field..</small>
+
+            </div>
+            <div class="col-md-4">
+                <label for="inputState" class="form-label">State</label>
+                <select name="stateIndex" [(ngModel)]="stateIndex" (change)="printState()" id="inputState"
+                        class="form-select">
+                    <option *ngFor="let state of states.states; let i = index" [value]="i">{{state.state}}</option>
+                </select>
+            </div>
+            <div class="col-md-4">
+                <label for="inputCity" class="form-label">City</label>
+                <select required name="city" id="inputCity" class="form-select" [(ngModel)]="city" #cityName="ngModel"
+                        [class.is-invalid]="cityName.invalid && cityName.touched">
+                    <option *ngFor="let district of districts" [value]="district">{{district}}</option>
+                </select>
+                <small class="text-danger" [class.d-none]="cityName.valid || cityName.untouched">Select the
+                    city..</small>
+            </div>
+            <div class="col-md-2">
+                <label for="inputZip" class="form-label">Pin Code</label>
+                <input required name="pin" type="text" maxlength="6" class="form-control" id="inputZip" [(ngModel)]="pin"
+                       #pincode="ngModel" [class.is-invalid]="pincode.invalid && pincode.touched">
+                <small class="text-danger" [class.d-none]="pincode.valid || pincode.untouched">Fill the
+                    field..</small>
+            </div>
+
+
+            <div class="col-12">
+                <button type="submit" class="btn btn-primary nextButton">Next</button>
+                <button type="button" (click)="addAddress()" class="btn btn-primary addNewAddressButton">Add Address
+                </button>
+            </div>
+        </form>
+    </div>
+
+    <div *ngIf="existing === '1'">
+
+        <mat-radio-group class="mt-5 d-flex flex-column gap-3 text-center" (change)="printAddressId($event)">
+            <mat-radio-button value="{{address.id}}" *ngFor="let address of addressList; let i = index">
+                <div class="card">
+                    <div class="card-body">{{address.locality}}, {{address.street}}, City - {{address.city}}, State
+                        - {{address.state}}, PIN - {{address.pincode}}</div>
+                </div>
+            </mat-radio-button>
+        </mat-radio-group>
+        <div class="col-12">
+            <button type="button" (click)="next()" class="btn btn-primary float-end">Next</button>
+        </div>
+    </div>
+</div>
+

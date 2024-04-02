@@ -1,0 +1,43 @@
+<div class="p-5 ms-2 me-2">
+
+  <app-cart-canvas  [userId]="getUserId()" ></app-cart-canvas>
+
+  <div class="product-overview d-flex justify-content-between gap-5">
+    <div class="carousel-component d-inline-block">
+      <app-carousel [images]="imageList"></app-carousel>
+    </div>
+
+    <div class="product-details">
+      <p class="fs-1 fw-bold">{{productDetails?.productName}}</p>
+      <br>
+      <br>
+      <p class="fs-5" style="font-family : 'Quicksand'; font-weight: 400">Description: <br><br>
+        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aut blanditiis cum delectus eum facere possimus
+        repellendus vero voluptates. Accusamus adipisci amet aperiam at atque consectetur consequuntur cupiditate
+        debitis deserunt distinctio eaque excepturi hic illo illum laborum laudantium libero nam nobis nostrum, numquam
+        officiis porro quisquam rem reprehenderit sed sunt tenetur!
+      </p>
+      <p class="fs-3">
+        {{productDetails?.productCost - (productDetails?.productCost * productDetails?.productDiscount / 100) | currency : 'INR':'symbol':'1.2-2'}}
+        &nbsp;&nbsp;<span class="text-decoration-line-through">{{productDetails?.productCost | currency : '':'':'1.2-2'}}</span>
+      </p>
+      <br>
+      <div class="buttons-group d-flex justify-content-center gap-5">
+        <button (click)="buyItem()" color="warn" class="product-details-button" mat-raised-button>
+          <span class="spinner-border spinner-border-sm" [class.d-none]="!showBuySpinner"></span>
+          <span class="w-100 d-flex align-items-center justify-content-center" [class.d-none]="showBuySpinner">
+          <mat-icon class="me-2">flash_on</mat-icon>BUY NOW
+            </span>
+        </button>
+        <button color="warn" class="product-details-button" mat-raised-button (click)="addProductToShoppingCart(productDetails?.id)">
+          <span class="spinner-border spinner-border-sm" [class.d-none]="!showCartSpinner"></span>
+          <span class="w-100 d-flex align-items-center justify-content-center" [class.d-none]="showCartSpinner">
+          <mat-icon class="me-2">add_shopping_cart</mat-icon>ADD TO CART
+            </span>
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+
+

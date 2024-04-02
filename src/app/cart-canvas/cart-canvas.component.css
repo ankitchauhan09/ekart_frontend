@@ -1,0 +1,19 @@
+.canvasProducts{
+    overflow-y : scroll;
+    padding : 5px;
+    height : 90%;
+}
+
+.offcanvas-body{
+    overflow-y : hidden;
+    padding : 0!important;
+}
+
+.checkout-button{
+    height : 10%;
+}
+
+.input-group-text{
+    border : none!important;
+    background-color: #ffff!important;
+}

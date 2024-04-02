@@ -1,0 +1,9 @@
+.add-product-image-grid{
+  border: 2px solid black;
+}
+
+.image-remove-btn{
+  position: absolute;
+  top : 0px;
+  right : 0px;
+}
